@@ -1,7 +1,7 @@
 {
     "tasks": [
         {
-            
+
             "type": "cppbuild",
             "label": "C/C++: g++ build active file",
             "command": "/usr/bin/g++",
@@ -10,7 +10,7 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/outputs/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${fileDirname}"
