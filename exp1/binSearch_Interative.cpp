@@ -13,17 +13,18 @@ int main(){
     cin>>k;
     int flag=0;
     int l=0,h=n;
-    while(l<=h){
+    while(l<h){
         int m=(l+h)/2;
         if(a[m]==k){
             flag=1;
             cout<<"Element found at "<<m<<endl;
             break;
+
         }
         else if(a[m]<k)
-        h=m;
+        l=m+1;
         else
-        l=m;
+        h=m;
     }
     if(flag==0) cout<<"Element not found\n";
 }

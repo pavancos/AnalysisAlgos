@@ -7,7 +7,7 @@ bool binsearch(int *a,int l,int h,int k){
             cout<<m<<endl;
             return true;
         }
-        else if(a[m]>k)
+        else if(a[m]<k)
         binsearch(a,m+1,h,k);
         else
         binsearch(a,l,m,k);
