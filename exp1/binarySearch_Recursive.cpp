@@ -1,19 +1,15 @@
 #include <iostream>
 using namespace std;
-bool binsearch(int *a, int l, int h, int k)
-{
+bool binsearch(int *a, int l, int h, int k){
     if (l <= h)
     {
         int m = (l + h) / 2;
-        if (a[m] == k)
-        {
+        if (a[m] == k){
             cout << m << endl;
             return true;
         }
-        else if (a[m] < k)
-            binsearch(a, m + 1, h, k);
-        else
-            binsearch(a, l, m, k);
+        else if (a[m] < k) binsearch(a, m + 1, h, k);
+        else binsearch(a, l, m, k);
     }
 }
 int main()
