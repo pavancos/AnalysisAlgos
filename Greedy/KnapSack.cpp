@@ -1,23 +1,46 @@
 #include<iostream>
-#include<vector>
 #include<algorithm>
 using namespace std;
-
-void GreedyKnapSack(int n,int m, vector<int>& p,vector<int>& w,vector<int>& x){
-    vector<float>r;
-    for(int i=0;i<n;i++)
-        r.push_back((float)(p[i]/w[i]));
-    for(int i=0;i<n;i++){
-        
+struct Item {
+    int weight;
+    int profit;
+};
+bool compare(Item a, Item b) {
+    return ((float)a.profit / a.weight) > ((float)b.profit / b.weight);
+}
+void GreedyKnapsack(int n, int m, Item items[]) {
+    sort(items, items + n, compare);
+    int i;
+    float x[n];
+    for ( i = 0; i < n; i++)
+        x[i] = 0;
+    int u = m;
+    for ( i = 0; i < n; i++) {
+        if (items[i].weight > u)
+            break;
+        else {
+            x[i] = 1.0;
+            u = u - items[i].weight;
+        }
     }
+    if (u < m && i < n)
+        x[i] = (float)u / items[i].weight;
+    cout << "Items Selected: " << endl;
+    for (int i = 0; i < n; i++)
+        cout << "Item " << i + 1 << "- " << x[i] << endl;
+}
+int main() {
+    int n, m;
+    cout << "Enter the n.of items: ";
+    cin >> n;
+    Item items[n];
+    cout << "Enter the weight-profit:" << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> items[i].weight >> items[i].profit;
+    }
+    cout << "Enter the size: ";
+    cin >> m;
+    GreedyKnapsack(n, m, items);
+    return 0;
 }
 
-int main(){
-    int n=3;
-    int m=20;
-    vector<int>P={25,24,15};
-    vector<int>W={18,15,20};
-    vector<int>X={0,0,0};
-    GreedyKnapSack(n,m,P,W,X);
-
-}
