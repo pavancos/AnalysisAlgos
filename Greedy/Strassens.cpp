@@ -1,25 +1,5 @@
 #include <iostream>
 using namespace std;
-
-// Function to add two matrices
-void add(int A[2][2], int B[2][2], int C[2][2]) {
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            C[i][j] = A[i][j] + B[i][j];
-        }
-    }
-}
-
-// Function to subtract two matrices
-void subtract(int A[2][2], int B[2][2], int C[2][2]) {
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            C[i][j] = A[i][j] - B[i][j];
-        }
-    }
-}
-
-// Function to multiply two 2x2 matrices using Strassen's algorithm
 void strassen(int A[2][2], int B[2][2], int C[2][2]) {
     int M1 = (A[0][0] + A[1][1]) * (B[0][0] + B[1][1]);
     int M2 = (A[1][0] + A[1][1]) * B[0][0];
@@ -35,7 +15,6 @@ void strassen(int A[2][2], int B[2][2], int C[2][2]) {
     C[1][1] = M1 - M2 + M3 + M6;
 }
 
-// Function to print a matrix
 void printMatrix(int A[2][2]) {
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
@@ -44,7 +23,6 @@ void printMatrix(int A[2][2]) {
         cout << endl;
     }
 }
-
 int main() {
     int A[2][2] = {{1, 2}, {3, 4}};
     int B[2][2] = {{5, 6}, {7, 8}};
