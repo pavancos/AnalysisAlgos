@@ -8,7 +8,7 @@
             "args": [
                 "${file}",
                 "-o",
-                "${fileDirname}/outputs/${fileBasenameNoExtension}"
+                "${fileDirname}/5E0/outputs/${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${fileDirname}"
