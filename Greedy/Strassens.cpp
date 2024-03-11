@@ -32,11 +32,9 @@ int main() {
 
     cout << "Matrix A:" << endl;
     printMatrix(A);
-    cout << endl;
 
     cout << "Matrix B:" << endl;
     printMatrix(B);
-    cout << endl;
 
     cout << "Resultant Matrix C:" << endl;
     printMatrix(C);
