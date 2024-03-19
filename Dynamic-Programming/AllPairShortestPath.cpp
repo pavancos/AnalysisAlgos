@@ -2,12 +2,9 @@
 using namespace std;
 #define V 5
 #define INF INT_MAX
-void print(int g[][V])
-{
-    for (int i = 0; i < V; i++)
-    {
-        for (int j = 0; j < V; j++)
-        {
+void print(int g[][V]){
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
             if (g[i][j] == INF)
                 cout << "INF"
                      << " ";
@@ -17,8 +14,7 @@ void print(int g[][V])
         cout << endl;
     }
 }
-void apsp(int g[][V])
-{
+void apsp(int g[][V]){
     int i, j, k;
     for (k = 0; k < V; k++)
         for (i = 0; i < V; i++)
@@ -28,8 +24,7 @@ void apsp(int g[][V])
     print(g);
 }
 
-int main()
-{
+int main(){
     int graph[V][V] = {
         {0, 2, 7, INF, INF},
         {5, 0, INF, 7, 4},
