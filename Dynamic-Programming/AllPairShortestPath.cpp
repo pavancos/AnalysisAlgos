@@ -21,16 +21,10 @@ void apsp(int g[][V])
 {
     int i, j, k;
     for (k = 0; k < V; k++)
-    {
         for (i = 0; i < V; i++)
-        {
             for (j = 0; j < V; j++)
-            {
                 if (g[i][j] > (g[i][k] + g[k][j]) && (g[k][j] != INF && g[i][k] != INF))
                     g[i][j] = g[i][k] + g[k][j];
-            }
-        }
-    }
     print(g);
 }
 
