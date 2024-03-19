@@ -30,7 +30,8 @@ int main(){
         {5, 0, INF, 7, 4},
         {3, INF, 0, 6, INF},
         {INF, 5, 1, 0, INF},
-        {INF, INF, INF, 3, 0}};
+        {INF, INF, INF, 3, 0}
+    };
     print(graph);
     cout<<"\nAll Pair Shortest Path:\n";
     apsp(graph);
