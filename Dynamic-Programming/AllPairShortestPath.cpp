@@ -5,11 +5,8 @@ using namespace std;
 void print(int g[][V]){
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
-            if (g[i][j] == INF)
-                cout << "INF"
-                     << " ";
-            else
-                cout << g[i][j] << "   ";
+            if (g[i][j] == INF) cout << "INF" << " ";
+            else cout << g[i][j] << "   ";
         }
         cout << endl;
     }
@@ -23,7 +20,6 @@ void apsp(int g[][V]){
                     g[i][j] = g[i][k] + g[k][j];
     print(g);
 }
-
 int main(){
     int graph[V][V] = {
         {0, 2, 7, INF, INF},
