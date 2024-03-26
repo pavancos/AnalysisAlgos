@@ -1,24 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define V 5
-int travllingSalesmanProblem(int graph[][V], int s){
-    vector<int> vertex;
-    for (int i = 0; i < V; i++)
-        if (i != s)
-            vertex.push_back(i);
-    int min_path = INT_MAX;
+int tsp(int g[][V],int s){
+    vector<int>c;
+    for(int i=0;i<V;i++)
+        if(i!=s) c.push_back(i);
+    int mp=INT_MAX;
     do{
-        int current_pathweight = 0;
-        int k = s;
-        for (int i = 0; i < vertex.size(); i++){
-            current_pathweight += graph[k][vertex[i]];
-            k = vertex[i];
+        int cpw=0;
+        int k=s;
+        for(int i=0;i<c.size();i++){
+            cpw+=g[k][c[i]];
+            k=c[i];
         }
-        current_pathweight += graph[k][s];
-        min_path = min(min_path, current_pathweight);
-    } while (next_permutation(vertex.begin(), vertex.end()));
-
-    return min_path;
+        cpw+=g[k][s];
+        mp=min(mp, cpw);
+    }while(next_permutation(c.begin(),c.end()));
+    return mp;
 }
 int main(){
     int graph[V][V] = {
@@ -28,7 +26,7 @@ int main(){
         {4, 5, 1, 0, 6},
         {7, 8, 3, 3, 0}
     };
-    int s = 0;
-    cout << travllingSalesmanProblem(graph, s) << "\n" << endl;
+    int s=0;
+    cout<<tsp(graph,s)<<"\n"<<endl;
     return 0;
 }
