@@ -10,7 +10,8 @@ int tsp(int g[][V],int s){
         int cpw=0;
         int k=s;
         for(int i=0;i<c.size();i++){
-            cpw+=g[k][c[i]]; k=c[i];
+            cpw+=g[k][c[i]];
+            k=c[i];
         }
         cpw+=g[k][s];
         mp=min(mp, cpw);
