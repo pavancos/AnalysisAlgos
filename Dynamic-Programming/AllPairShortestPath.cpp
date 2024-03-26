@@ -9,8 +9,8 @@ void graphInit(int g[][V]){
     for(int i=0;i<V;i++) g[i][i]=0;
 }
 void print(int g[][V]){
-    for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
+    for (int i = 0; i < V; i++){
+        for (int j = 0; j < V; j++){
             if (g[i][j] == INF)
                 cout << "INF" << " ";
             else
