@@ -36,6 +36,6 @@ int main()
         {7, 8, 3, 3, 0}
     };
     int s = 0;
-    cout << travllingSalesmanProblem(graph, s) << endl;
+    cout << travllingSalesmanProblem(graph, s) << endl << endl;
     return 0;
 }
