@@ -2,19 +2,14 @@
 using namespace std;
 #define V 5
 int tsp(int g[][V],int s){
-    vector<int>c;
-    for(int i=0;i<V;i++)
-        if(i!=s) c.push_back(i);
-    int mp=INT_MAX;
+    vector<int>c;int mp=INT_MAX;
+    for(int i=0;i<V;i++) if(i!=s) c.push_back(i);
     do{
-        int cpw=0;
-        int k=s;
+        int cpw=0, k=s;
         for(int i=0;i<c.size();i++){
-            cpw+=g[k][c[i]];
-            k=c[i];
+            cpw+=g[k][c[i]]; k=c[i];
         }
-        cpw+=g[k][s];
-        mp=min(mp, cpw);
+        cpw+=g[k][s]; mp=min(mp, cpw);
     }while(next_permutation(c.begin(),c.end()));
     return mp;
 }
