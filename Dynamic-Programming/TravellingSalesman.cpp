@@ -7,9 +7,11 @@ int tsp(int g[][V],int s){
     do{
         int cpw=0, k=s;
         for(int i=0;i<c.size();i++){
-            cpw+=g[k][c[i]]; k=c[i];
+            cpw+=g[k][c[i]];
+            k=c[i];
         }
-        cpw+=g[k][s]; mp=min(mp, cpw);
+        cpw+=g[k][s];
+        mp=min(mp, cpw);
     }while(next_permutation(c.begin(),c.end()));
     return mp;
 }
