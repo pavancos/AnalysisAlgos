@@ -6,11 +6,11 @@ pair<int, int> knapSack(int W, int wt[], int val[], int n){
         return make_pair(0, 0);
     if (wt[n - 1] > W)
         return knapSack(W, wt, val, n - 1);
-    pair<int, int> include = knapSack(W - wt[n - 1], wt, val, n - 1);
-    include.first += val[n - 1];
-    include.second += wt[n - 1];
-    pair<int, int> exclude = knapSack(W, wt, val, n - 1);
-    return (include.first > exclude.first) ? include : exclude;
+    pair<int, int> inc = knapSack(W - wt[n - 1], wt, val, n - 1);
+    inc.first += val[n - 1];
+    inc.second += wt[n - 1];
+    pair<int, int> exc = knapSack(W, wt, val, n - 1);
+    return (inc.first > exc.first) ? inc : exc;
 }
 int main(){
     int n;
