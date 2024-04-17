@@ -1,42 +1,45 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <climits>
 using namespace std;
-int sum(int freq[], int i, int j);
-
-int optCost(int freq[], int i, int j)
-{
-    if (j < i)
-        return 0;
-    if (j == i)
-        return freq[i];
-    int fsum = sum(freq, i, j);
-    int min = INT_MAX;
-    for (int r = i; r <= j; ++r)
-    {
-        int cost = optCost(freq, i, r - 1) +
-                   optCost(freq, r + 1, j);
-        if (cost < min)
-            min = cost;
+int optimalBST(vector<int> p, vector<int> q, int n){
+    vector<vector<int>> w(n + 1, vector<int>(n + 1, 0));
+    vector<vector<int>> c(n + 1, vector<int>(n + 1, 0));
+    vector<vector<int>> r(n + 1, vector<int>(n + 1, 0));
+    for (int i = 0; i <= n; i++){
+        w[i][i] = q[i];
+        c[i][i] = 0;
+        r[i][i] = 0;
     }
-    return min + fsum;
+    for (int d = 1; d <= n; d++){
+        for (int i = 0; i <= n - d; i++){
+            int j = i + d;
+            w[i][j] = p[j] + q[j] + w[i][j - 1];
+            c[i][j] = INT_MAX;
+            for (int k = i + 1; k <= j; k++){
+                int temp = c[i][k - 1] + c[k][j] + w[i][j];
+                if (temp < c[i][j]){
+                    c[i][j] = temp;
+                    r[i][j] = k;
+                }
+            }
+        }
+    }
+    return c[0][n];
 }
-int optimalSearchTree(int keys[],
-                      int freq[], int n)
-{
-    return optCost(freq, 0, n - 1);
-}
-int sum(int freq[], int i, int j)
-{
-    int s = 0;
-    for (int k = i; k <= j; k++)
-        s += freq[k];
-    return s;
-}
-int main()
-{
-    int keys[] = {10, 12, 20};
-    int freq[] = {34, 8, 50};
-    int n = sizeof(keys) / sizeof(keys[0]);
-    cout << "Cost of Optimal BST is "
-         << optimalSearchTree(keys, freq, n);
+int main(){
+    int n;
+    cout << "Enter the number of keys: ";
+    cin >> n;
+    vector<int> p(n + 1); 
+    vector<int> q(n + 1);
+    cout << "Enter " << n << " successful probabilities: ";
+    for (int i = 1; i <= n; i++)
+        cin >> p[i];
+    cout << "Enter " << n + 1 << " unsuccessful probabilities: ";
+    for (int i = 0; i <= n; i++)
+        cin >> q[i];
+    int minCost = optimalBST(p, q, n);
+    cout << "The minimum cost of constructing the optimal BST is: " << minCost << endl;
     return 0;
 }
