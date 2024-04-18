@@ -19,7 +19,7 @@ void print(int g[][V]){
         cout << endl;
     }
 }
-void apsp(int g[][V]){
+void DJI(int g[][V]){
     int i, j, k;
     for (k = 0; k < V; k++)
         for (i = 0; i < V; i++)
@@ -47,5 +47,5 @@ int main(){
     }
     print(graph);
     cout<<"\nAll Pair Shortest Path:\n";
-    apsp(graph);
+    DJI(graph);
 }
