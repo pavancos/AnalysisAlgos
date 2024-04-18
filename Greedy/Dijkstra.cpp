@@ -1,51 +1,62 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <climits>
 using namespace std;
-#define V 5
-#define INF INT_MAX
-void addEdge(int g[][V],int i,int j,int w){
-    g[i][j]=w;
-}
-void graphInit(int g[][V]){
-    for(int i=0;i<V;i++) g[i][i]=0;
-}
-void print(int g[][V]){
-    for (int i = 0; i < V; i++){
-        for (int j = 0; j < V; j++){
-            if (g[i][j] == INF)
-                cout << "INF" << " ";
-            else
-                cout << g[i][j] << "   ";
+#define m 10
+
+int minDist(int dist[], bool visited[], int n){
+    int min = INT_MAX, index;
+    for (int i = 1; i <= n; i++)
+        if (!visited[i] && dist[i] <= min){
+            min = dist[i];
+             index = i;
         }
-        cout << endl;
-    }
+    return index;
 }
-void DJI(int g[][V]){
-    int i, j, k;
-    for (k = 0; k < V; k++)
-        for (i = 0; i < V; i++)
-            for (j = 0; j < V; j++)
-                if (g[i][j] > (g[i][k] + g[k][j]) && (g[k][j] != INF && g[i][k] != INF))
-                    g[i][j] = g[i][k] + g[k][j];
-    print(g);
+
+void print(int dist[], int n){
+    cout << "Vertex \t Distance from Source" << endl;
+    for (int i = 1; i <= n; i++)
+        cout << i << " \t\t\t" << dist[i] << endl;
 }
-int main(){
-    // int graph[V][V] = {
-    //     {0, 2, 7, INF, INF},
-    //     {5, 0, INF, 7, 4},
-    //     {3, INF, 0, 6, INF},
-    //     {INF, 5, 1, 0, INF},
-    //     {INF, INF, INF, 3, 0}
-    // };
-    int graph[V][V]={INF};
-    graphInit(graph);
-    cout<<"Enter The Vertices (Src-Dest-Wt)\n";
-    for(int i=0;i<V*V;i++){
-        int s,d,w;
-        cin>>s>>d>>w;
-        if(w<0) addEdge(graph,s-1,d-1,INF);
-        else addEdge(graph,s-1,d-1,w);
+
+void dijkstra(int graph[m][m], int src, int n){
+    int dist[n];
+    bool visited[n];
+    for (int i = 1; i <= n; i++){
+        dist[i] = INT_MAX;
+        visited[i] = false;
     }
-    print(graph);
-    cout<<"\nAll Pair Shortest Path:\n";
-    DJI(graph);
+    dist[src] = 0;
+    for (int i = 0; i < n - 1; i++) {
+        int u = minDist(dist, visited, n);
+        visited[u] = true;
+        for (int v = 1; v <= n; v++)
+            if (!visited[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v])
+                dist[v] = dist[u] + graph[u][v];
+    }
+    print(dist, n);
+}
+
+int main() {
+    int n, Edges, t, s;
+    cout << "Enter the number of vertices: ";
+    cin >> n;
+    int graph[m][m];
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= n; j++){
+            graph[i][j] = 0;
+        }
+    }
+    cout << "Enter the number of edges: ";
+    cin >> Edges;
+    for (int i = 0; i < Edges; i++) {
+        int src, dest, weight;
+        cout << "Enter edge " << i + 1 << " (source destination weight): ";
+        cin >> src >> dest >> weight;
+        graph[src][dest] = weight;
+    }
+    cout << "Enter Source vertex: ";
+    cin >> s;
+    dijkstra(graph, s, n);
+    return 0;
 }
