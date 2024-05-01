@@ -1,8 +1,7 @@
 #include <iostream>
 using namespace std;
 bool binsearch(int *a, int l, int h, int k){
-    if (l <= h)
-    {
+    if (l <= h){
         int m = (l + h) / 2;
         if (a[m] == k){
             cout << m << endl;
@@ -12,8 +11,7 @@ bool binsearch(int *a, int l, int h, int k){
         else binsearch(a, l, m, k);
     }
 }
-int main()
-{
+int main(){
     int n;
     cin >> n;
     int arr[n];

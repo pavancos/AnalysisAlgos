@@ -1,18 +1,15 @@
 #include <iostream>
 using namespace std;
-int partition(int a[], int l, int h)
-{
+int partition(int a[], int l, int h){
     int piv = a[l];
     int i = l + 1;
     int j = h;
-    while (i <= j)
-    {
+    while (i <= j){
         while (a[i] <= piv && i <= j)
             i++;
         while (a[j] > piv && i <= j)
             j--;
-        if (i < j)
-        {
+        if (i < j){
             int temp = a[i];
             a[i] = a[j];
             a[j] = temp;
