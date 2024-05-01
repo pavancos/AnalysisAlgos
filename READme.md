@@ -1,1 +1,1 @@
-# Design and Analysis of Algos
+# Design and Analysis of Algorithms
